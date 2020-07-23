@@ -89,7 +89,7 @@ clf.fit(feature_train, train_correct)
 
 #
 # モデル評価
-#   [評価スコア] precision、recall、f1
+#   [評価スコア] precision、recall、f_measure
 #
 print('evaluating...')
 # 30%分割したテスト用データを学習したモデルに通して、出てきた結果と正解を比較する

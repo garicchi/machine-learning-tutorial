@@ -24,12 +24,12 @@ print('loading datasets...')
 dataset = pd.read_csv(Path(__file__).parent / 'dataset.csv')
 
 # dataset値
-#  user_id  attack  gurd   life  is_bot
-#     2949    32.2  73.5  370.5       0
-#     3680    35.9  43.9  274.8       1
-#     4992    34.5  64.5  300.5       0
-#     2502    78.2  59.3  471.5       1
-#     4687    61.5  54.1  663.3       1
+#  user_id  attack  gurd   life  is_cheat
+#     2949    32.2  73.5  370.5       FALSE
+#     3680    35.9  43.9  274.8       TRUE
+#     4992    34.5  64.5  300.5       FALSE
+#     2502    78.2  59.3  471.5       TRUE
+#     4687    61.5  54.1  663.3       TRUE
 #  ...
 
 
@@ -38,11 +38,17 @@ dataset = pd.read_csv(Path(__file__).parent / 'dataset.csv')
 #   特徴量選定、データ整形など
 #
 print('preprocessing...')
+# is_cheatカラムを数値に置き換える
+dataset = dataset.replace('TRUE', 1)
+dataset = dataset.replace('FALSE', 0)
+
+# lifeの特徴量は学習に必要ないと判断し、データセットから消す
+dataset = dataset.drop('life', axis=1)
+
 # is_cheatカラム(今回予測したいデータ)をデータセットから分離する
 correct_column = dataset['is_cheat']  # is_cheatカラムだけ取り出して
 dataset = dataset.drop('is_cheat', axis=1)  # is_cheatカラムを消す
-# lifeの特徴量は学習に必要ないと判断し、データセットから消す
-dataset = dataset.drop('life', axis=1)
+
 # 学習用データとテスト用データを分割する 7:3
 train_feature, test_feature, train_correct, test_correct = train_test_split(
     dataset, correct_column, test_size=0.3

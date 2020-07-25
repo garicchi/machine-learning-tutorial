@@ -55,9 +55,6 @@ correct_data = dataset['is_cheat']  # is_cheatカラムだけ取り出す
 #   attack、gurdカラム(今回の特徴量データ)にする
 feature_data = feature_data.drop('is_cheat', axis=1)  # is_cheatカラムを消す
 
-print(feature_data.head())
-print(correct_data)
-
 # feature_dataの値   correct_dataの値
 #  attack  guard       is_cheat
 #    41.0  56.3        1

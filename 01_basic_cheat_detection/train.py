@@ -53,7 +53,10 @@ feature_data = dataset.drop('user_id', axis=1)
 #   is_cheatカラム(今回識別したい正解データ)をデータセットから分離する
 correct_data = dataset['is_cheat']  # is_cheatカラムだけ取り出す
 #   attack、gurdカラム(今回の特徴量データ)にする
-feature_data = dataset.drop('is_cheat', axis=1)  # is_cheatカラムを消す
+feature_data = feature_data.drop('is_cheat', axis=1)  # is_cheatカラムを消す
+
+print(feature_data.head())
+print(correct_data)
 
 # feature_dataの値   correct_dataの値
 #  attack  guard       is_cheat

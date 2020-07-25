@@ -106,11 +106,16 @@ clf.fit(train_feature, train_correct)
 print('evaluating...')
 # 30%分割したテスト用データを学習したモデルに通して、出てきた結果と正解を比較する
 predict = clf.predict(test_feature)
+
+# テスト推論結果をprintしてみる
+print('\nテスト推論結果プレビュー(一部データ)')
 result = pd.DataFrame({
     'user_id': test_user_id,
-    'correct': test_correct,  # 正解データ
-    'predict': predict  # 予測したデータ
+    '正解データ': test_correct,  # 正解データ
+    '推論結果': predict  # 予測したデータ
 })
+print(result.head().to_string(index=None))
+
 # [precision] 学習モデルがチートと判定した中で、どれだけが本当にチートだったか
 precision = precision_score(test_correct, predict)
 # [recall] 本当にチートだったデータの中から、どれだけチートだと予測できたか

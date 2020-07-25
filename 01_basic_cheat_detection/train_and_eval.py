@@ -61,8 +61,8 @@ train_feature, test_feature, train_correct, test_correct = train_test_split(
 # テストデータのuser_idカラムは予測結果表示時に必要なので取り出しておく
 test_user_id = test_feature['user_id']
 # user_idカラムは特徴量としてはいらないので消す
-feature_train = train_feature.drop('user_id', axis=1)
-feature_test = test_feature.drop('user_id', axis=1)
+train_feature = train_feature.drop('user_id', axis=1)
+test_feature = test_feature.drop('user_id', axis=1)
 
 # train_feature、train_correct 変数はモデル学習に使う。全体の70%
 #
@@ -96,7 +96,7 @@ print('training...')
 #   [solver] ニューラルネットワークの重み調整アルゴリズム
 clf = MLPClassifier(solver='adam')
 # attackとguardの組み合わせからis_cheatを学習
-clf.fit(feature_train, train_correct)
+clf.fit(train_feature, train_correct)
 
 
 #
@@ -105,7 +105,7 @@ clf.fit(feature_train, train_correct)
 #
 print('evaluating...')
 # 30%分割したテスト用データを学習したモデルに通して、出てきた結果と正解を比較する
-predict = clf.predict(feature_test)
+predict = clf.predict(test_feature)
 result = pd.DataFrame({
     'user_id': test_user_id,
     'correct': test_correct,  # 正解データ

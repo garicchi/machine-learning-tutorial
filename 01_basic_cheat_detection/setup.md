@@ -1,6 +1,6 @@
 # SETUP
 
-## ターミナル環境のセットアップ
+## 1. ターミナル環境のセットアップ
 
 本チュートリアルではPythonをターミナルから実行するために、bashシェル環境のあるターミナルを用意する必要があります。
 
@@ -33,7 +33,7 @@ Macの場合は標準でインストールされているターミナルアプ�
 
 Linuxも標準のターミナルソフトで問題ないです
 
-## Python 3.6以上のインストール
+## 2. Python 3.6以上のインストール
 
 本チュートリアルではPython3.6以上の環境が必要になります。
 
@@ -85,3 +85,11 @@ Ubuntuの場合、標準でPython3が入っています
 sudo apt update && sudo apt install python3
 ```
 
+## 3. リポジトリのclone
+
+こちらのリポジトリをお好きなディレクトリにcloneしてください
+```
+cd お好きなディレクトリ
+
+git clone https://github.com/garicchi/machine-learning-basic.git
+```
